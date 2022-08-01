@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/invert-binary-tree/
+SOLUTION 1
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root==null)
+            return null;
+        TreeNode curr=root;
+        TreeNode leftVal=invertTree(curr.left);
+        TreeNode rightVal=invertTree(curr.right);
+        curr.left = rightVal;
+        curr.right = leftVal;
+        return root;
+        
+    }
+}
+SOLUTION 2
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root==null)
+            return null;
+        TreeNode curr=new TreeNode(root.val);
+        curr.left=invertTree(root.right);
+        curr.val=root.val;
+        curr.right=invertTree(root.left);
+        return curr;       
+    }
+}
