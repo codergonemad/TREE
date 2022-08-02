@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+class Solution {
+    ArrayList<Integer> list=new ArrayList<>();
+    public int kthSmallest(TreeNode root, int k) {
+        preorder(root);
+        Collections.sort(list);
+        return list.get(k-1);
+    }
+    public void preorder(TreeNode root)
+    {
+        if(root==null)
+            return;
+        list.add(root.val);
+        preorder(root.left);
+        preorder(root.right);    
+    }
+}
